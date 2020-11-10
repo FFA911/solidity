@@ -673,6 +673,8 @@ ASTPointer<EnumDefinition> Parser::parseEnumDefinition()
 	}
 	if (members.empty())
 		parserError(3147_error, "enum with no members is not allowed.");
+	if (members.size() > 256)
+		parserError(1611_error, "enum with more than 256 members is not allowed.");
 
 	nodeFactory.markEndPosition();
 	expectToken(Token::RBrace);
